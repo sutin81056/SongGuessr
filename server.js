@@ -12,7 +12,8 @@ const server = http.createServer(app); // 讓 Express & WebSocket 共享 server
 const io = socketIo(server, {
   cors: {
     origin:
-      process.env.FRONTEND_URL || "https://song-guessr-frontend.vercel.app", // 設定允許的前端網址
+      process.env.FRONTEND_URL ||
+      "https://song-guessr-frontend-pz8gjnnin-sutin81056s-projects.vercel.app", // 設定允許的前端網址
     methods: ["GET", "POST"],
   },
 });
