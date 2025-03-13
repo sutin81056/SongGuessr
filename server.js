@@ -5,9 +5,9 @@ const socketIo = require("socket.io");
 require("dotenv").config();
 
 const app = express();
-const server = http.createServer(app);
+const server = http.createServer(app); // 這裡建立 http 伺服器
 
-const io = require("socket.io")(5000, {
+const io = socketIo(server, {
   cors: {
     origin: "*",
     methods: ["GET", "POST"],
