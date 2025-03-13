@@ -5,13 +5,13 @@ const socketIo = require("socket.io");
 require("dotenv").config();
 
 const app = express();
-app.use(cors()); // ✅ 確保 Express API 也允許 CORS
+app.use(cors()); // 確保 Express API 也允許 CORS
 
-const server = http.createServer(app); // ✅ 讓 Express & WebSocket 共享 server
+const server = http.createServer(app); // 讓 Express & WebSocket 共享 server
 
 const io = socketIo(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || "*", // ✅ 設定允許的前端網址
+    origin: process.env.FRONTEND_URL || "*", // 設定允許的前端網址
     methods: ["GET", "POST"],
   },
 });
@@ -39,3 +39,7 @@ io.on("connection", (socket) => {
 const PORT = process.env.PORT || 5000;
 
 server.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+
+app.get("/", (req, res) => {
+  res.send("🎵 Guess The Song Game Backend is Running! 🎵");
+});
