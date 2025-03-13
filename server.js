@@ -27,3 +27,7 @@ io.on("connection", (socket) => {
     io.emit("updateUsers", users);
   });
 });
+
+// 讓 Railway 自動選擇 PORT
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
