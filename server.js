@@ -5,7 +5,7 @@ const socketIo = require("socket.io");
 require("dotenv").config();
 
 const app = express();
-const server = http.createServer(app); // 這裡建立 http 伺服器
+const server = http.createServer(app); // 確保 server 變數有定義
 
 const io = socketIo(server, {
   cors: {
@@ -39,4 +39,5 @@ io.on("connection", (socket) => {
 
 // 讓 Railway 自動選擇 PORT
 const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+
+server.listen(PORT, () => console.log(`Server is running on port ${PORT}`)); // 確保 server 存在
