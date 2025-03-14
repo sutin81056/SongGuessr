@@ -6,6 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+let test = "connection success";
 let users = [];
 let currentSong = { videoId: "", title: "", dj: "" };
 
@@ -31,6 +32,10 @@ app.post("/song", (req, res) => {
 
 app.get("/song", (req, res) => {
   res.json(currentSong);
+});
+
+app.get("/", (req, res) => {
+  res.json(test);
 });
 
 const PORT = process.env.PORT || 8080;
