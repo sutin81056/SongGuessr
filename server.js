@@ -1,4 +1,43 @@
 const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+let users = [];
+let currentSong = { videoId: "", title: "", dj: "" };
+
+app.post("/users", (req, res) => {
+  const { name } = req.body;
+  if (name && !users.some((user) => user.name === name)) {
+    users.push({ name });
+  }
+  res.json(users);
+});
+
+app.get("/users", (req, res) => {
+  res.json(users);
+});
+
+app.post("/song", (req, res) => {
+  const { videoId, title, dj } = req.body;
+  if (videoId && title && dj) {
+    currentSong = { videoId, title, dj };
+  }
+  res.json(currentSong);
+});
+
+app.get("/song", (req, res) => {
+  res.json(currentSong);
+});
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+/*
+const express = require("express");
 const http = require("http");
 const cors = require("cors");
 const socketIo = require("socket.io");
@@ -45,3 +84,4 @@ server.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
 app.get("/", (req, res) => {
   res.send("🎵 Guess The Song Game Backend is Running! 🎵");
 });
+*/
